@@ -1,0 +1,16 @@
+{
+    "author": "blackmountainwar",
+    "compatibility": [
+        2
+    ],
+    "description": "Modifyied official plugin that handles flac and opus transcoding. Listen! This plugin was vibecoded out of the wazoo. I'm not a programmer -- just needed this plugin to convert .flac into .opus so... here we are. Use at your own peril!",
+    "icon": "https://raw.githubusercontent.com/Unmanic/plugin.audio_transcoder/master/icon.png",
+    "id": "bmw_audio_transcoder",
+    "name": "Modded Audio Transcoder by blackmountainwar",
+    "priorities": {
+        "on_library_management_file_test": 10,
+        "on_worker_process": 1
+    },
+    "tags": "audio,ffmpeg",
+    "version": "0.0.1"
+}
