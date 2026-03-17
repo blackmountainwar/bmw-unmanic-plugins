@@ -1,6 +1,7 @@
 # Unmanic Plugins by blackmountainwar
 
 ## Instructions
+ Listen! This plugin was vibecoded out of the wazoo. I'm not a programmer -- just needed this plugin to convert .flac into .opus so... here we are. Use at your own peril!
 
 ### Repo URL:
 <!-- Replace the below link with your own repo URL (found in the 'repo' git branch) -->
