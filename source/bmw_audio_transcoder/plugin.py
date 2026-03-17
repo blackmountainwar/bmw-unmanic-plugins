@@ -237,6 +237,24 @@ def on_worker_process(data=None, task_data_store=None, file_metadata=None, **kwa
         # Get generated ffmpeg args
         ffmpeg_args = mapper.get_ffmpeg_args()
 
+        # Opus in Ogg containers does not support video streams (such as cover art).
+        # Filter out any video stream mappings to prevent FFmpeg from crashing.
+        if settings.get_setting('audio_encoder') == 'libopus':
+            filtered_args = []
+            skip_next = False
+            for i, arg in enumerate(ffmpeg_args):
+                if skip_next:
+                    skip_next = False
+                    continue
+                if arg == '-map' and len(ffmpeg_args) > i + 1 and ':v' in ffmpeg_args[i + 1]:
+                    skip_next = True
+                    continue
+                if arg.startswith('-c:v'):
+                    skip_next = True
+                    continue
+                filtered_args.append(arg)
+            ffmpeg_args = filtered_args
+
         # Apply ffmpeg args to command
         data['exec_command'] = ['ffmpeg']
         data['exec_command'] += ffmpeg_args
@@ -284,7 +302,6 @@ def on_postprocessor_task_results(data=None, task_data_store=None, file_metadata
     # Mark the source file to be ignored on subsequent scans if 'force_transcode' was enabled
     if settings.get_setting('force_transcode'):
         cache_directory = data.get('final_cache_path')
-        cache_directory = "/tmp/unmanic/unmanic_file_conversion-1616571944.7296784"
         if os.path.exists(os.path.join(cache_directory, '.audio_transcoder_force_transcode')):
             directory_info = UnmanicDirectoryInfo(os.path.dirname(original_source_path))
             directory_info.set('video_transcoder', os.path.basename(original_source_path), 'force_transcoded')
