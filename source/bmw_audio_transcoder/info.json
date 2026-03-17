@@ -6,7 +6,7 @@
     "description": "Transcode the audio streams of a audio file",
     "icon": "https://raw.githubusercontent.com/Unmanic/plugin.audio_transcoder/master/icon.png",
     "id": "bmw_audio_transcoder",
-    "name": "BMW Transcoder of  Audio Files",
+    "name": "BMW Transcoder of Audio Files",
     "priorities": {
         "on_library_management_file_test": 10,
         "on_worker_process": 1

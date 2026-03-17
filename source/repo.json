@@ -1,12 +1,27 @@
 {
-    "repo": {
-        "id": "repository.bmw",
-        "name": "BMW Repo",
-        "author": "Black Mountain War",
-        "icon": "",
-        "repo_data_url": "https://raw.githubusercontent.com/blackmountainwar/bmw-unmanic-plugins/example/repo/repo.json",
-        "repo_data_checksum": "",
-        "repo_data_directory": "https://raw.githubusercontent.com/blackmountainwar/bmw-unmanic-plugins/example/repo/"
-    },
-    "plugins": []
+  "repo": {
+    "id": "repository.bmw",
+    "name": "BMW Repo",
+    "author": "Black Mountain War",
+    "icon": "",
+    "repo_data_url": "https://raw.githubusercontent.com/blackmountainwar/bmw-unmanic-plugins/repo/repo.json",
+    "repo_data_checksum": "",
+    "repo_data_directory": "https://raw.githubusercontent.com/blackmountainwar/bmw-unmanic-plugins/repo/"
+  },
+  "plugins": [
+    {
+      "author": "Black Mountain War",
+      "compatibility": [2],
+      "description": "Transcode the audio streams of a audio file",
+      "icon": "https://raw.githubusercontent.com/Unmanic/plugin.audio_transcoder/master/icon.png",
+      "id": "bmw_audio_transcoder",
+      "name": "BMW Transcoder of Audio Files",
+      "priorities": {
+        "on_library_management_file_test": 10,
+        "on_worker_process": 1
+      },
+      "tags": "audio,ffmpeg",
+      "version": "0.0.1"
+    }
+  ]
 }
