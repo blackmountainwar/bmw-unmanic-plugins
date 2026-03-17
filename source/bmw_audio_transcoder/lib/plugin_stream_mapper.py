@@ -144,7 +144,7 @@ class PluginStreamMapper(StreamMapper):
             stream_encoding += self.settings.get_setting('custom_options').split()
         else:
             stream_encoding = [
-                '-c:{}'.format(stream_specifier), self.settings.get_setting('bmw_audio_encoder'),
+                '-c:{}'.format(stream_specifier), self.settings.get_setting('audio_encoder'),
             ]
 
             # Add encoder args
