@@ -25,13 +25,13 @@ import logging
 import os
 from configparser import NoSectionError, NoOptionError
 
-from audio_transcoder.lib import plugin_stream_mapper
-from audio_transcoder.lib.encoders.aac import AacEncoder
-from audio_transcoder.lib.ffmpeg import Probe, Parser
-from audio_transcoder.lib.global_settings import GlobalSettings
-from audio_transcoder.lib.encoders.lame import LameEncoder
-from audio_transcoder.lib.encoders.flac import FlacEncoder
-from audio_transcoder.lib.encoders.opus import OpusEncoder
+from bmw_audio_transcoder.lib import plugin_stream_mapper
+from bmw_audio_transcoder.lib.encoders.aac import AacEncoder
+from bmw_audio_transcoder.lib.ffmpeg import Probe, Parser
+from bmw_audio_transcoder.lib.global_settings import GlobalSettings
+from bmw_audio_transcoder.lib.encoders.lame import LameEncoder
+from bmw_audio_transcoder.lib.encoders.flac import FlacEncoder
+from bmw_audio_transcoder.lib.encoders.opus import OpusEncoder
 
 from unmanic.libs.unplugins.settings import PluginSettings
 from unmanic.libs.directoryinfo import UnmanicDirectoryInfo
