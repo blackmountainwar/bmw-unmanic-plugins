@@ -1,6 +1,6 @@
 {
   "id": "repository.blackmountainwar",
-  "name": "Black Mountain War's Custom Opus Transcoder Store",
-  "description": "Custom plugins for FLAC to Opus conversion",
+  "name": "Custom Unmanic Plugins by blackmountainwar",
+  "description": "Only a single plugin so far: a badly vibecoded audio trancoder that handles .flac and .opus conversion",
   "icon": ""
 }
