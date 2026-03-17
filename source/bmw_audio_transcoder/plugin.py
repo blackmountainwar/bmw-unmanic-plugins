@@ -141,7 +141,7 @@ def file_marked_as_force_transcoded(path):
     return False
 
 
-def on_library_management_file_test(data):
+def on_library_management_file_test(data=None, task_data_store=None, file_metadata=None, **kwargs):
     """
     Runner function - enables additional actions during the library management file tests.
 
@@ -187,7 +187,7 @@ def on_library_management_file_test(data):
         logger.debug("File '%s' does not contain streams require processing.", abspath)
 
 
-def on_worker_process(data):
+def on_worker_process(data=None, task_data_store=None, file_metadata=None, **kwargs):
     """
     Runner function - enables additional configured processing jobs during the worker stages of a task.
 
@@ -256,7 +256,7 @@ def on_worker_process(data):
     return
 
 
-def on_postprocessor_task_results(data):
+def on_postprocessor_task_results(data=None, task_data_store=None, file_metadata=None, **kwargs):
     """
     Runner function - provides a means for additional postprocessor functions based on the task success.
 
