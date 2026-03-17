@@ -98,7 +98,7 @@ class PluginStreamMapper(StreamMapper):
 
         # Build encoder specific args based on configured encoder
         # Note: these are not applied to advanced mode - advanced mode was returned above
-        encoder_name = self.settings.get_setting('bmw_audio_encoder')
+        encoder_name = self.settings.get_setting('audio_encoder')
         encoder = self.get_encoders(self.settings).get(encoder_name)
         if encoder:
             generic_kwargs, advanced_kwargs = encoder.generate_default_args(self.settings)
@@ -148,7 +148,7 @@ class PluginStreamMapper(StreamMapper):
             ]
 
             # Add encoder args
-            encoder_name = self.settings.get_setting('bmw_audio_encoder')
+            encoder_name = self.settings.get_setting('audio_encoder')
             encoder = self.get_encoders(self.settings).get(encoder_name)
             if encoder:
                 stream_encoding += encoder.args(stream_id)
@@ -168,7 +168,7 @@ class PluginStreamMapper(StreamMapper):
         :return:
         """
         # Get the container extension
-        encoder_name = self.settings.get_setting('bmw_audio_encoder')
+        encoder_name = self.settings.get_setting('audio_encoder')
         encoder = self.get_encoders(self.settings).get(encoder_name)
         if encoder:
             container_extension = encoder.get_output_file_extension(encoder_name)

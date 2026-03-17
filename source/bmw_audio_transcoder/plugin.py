@@ -37,7 +37,7 @@ from unmanic.libs.unplugins.settings import PluginSettings
 from unmanic.libs.directoryinfo import UnmanicDirectoryInfo
 
 # Configure plugin logger
-logger = logging.getLogger("Unmanic.Plugin.audio_transcoder")
+logger = logging.getLogger("Unmanic.Plugin.bmw_audio_transcoder")
 
 """
 TODO:
