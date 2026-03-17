@@ -30,7 +30,7 @@ from bmw_audio_transcoder.lib.ffmpeg import StreamMapper
 from bmw_audio_transcoder.lib.encoders.flac import FlacEncoder
 from bmw_audio_transcoder.lib.encoders.opus import OpusEncoder
 
-logger = logging.getLogger("Unmanic.Plugin.audio_transcoder")
+logger = logging.getLogger("Unmanic.Plugin.bmw_audio_transcoder")
 
 
 class PluginStreamMapper(StreamMapper):
@@ -98,10 +98,14 @@ class PluginStreamMapper(StreamMapper):
 
         # Build encoder specific args based on configured encoder
         # Note: these are not applied to advanced mode - advanced mode was returned above
-        encoder = self.get_encoders(self.settings).get(self.settings.get_setting('bmw_audio_encoder'))
-        generic_kwargs, advanced_kwargs = encoder.generate_default_args(self.settings)
-        self.set_ffmpeg_generic_options(**generic_kwargs)
-        self.set_ffmpeg_advanced_options(**advanced_kwargs)
+        encoder_name = self.settings.get_setting('audio_encoder')
+        encoder = self.get_encoders(self.settings).get(encoder_name)
+        if encoder:
+            generic_kwargs, advanced_kwargs = encoder.generate_default_args(self.settings)
+            self.set_ffmpeg_generic_options(**generic_kwargs)
+            self.set_ffmpeg_advanced_options(**advanced_kwargs)
+        else:
+            logger.error("Configured audio encoder '%s' is not supported or not found.", encoder_name)
 
     def test_stream_needs_processing(self, stream_info: dict):
         """
@@ -144,8 +148,12 @@ class PluginStreamMapper(StreamMapper):
             ]
 
             # Add encoder args
-            encoder = self.get_encoders(self.settings).get(self.settings.get_setting('bmw_audio_encoder'))
-            stream_encoding += encoder.args(stream_id)
+            encoder_name = self.settings.get_setting('audio_encoder')
+            encoder = self.get_encoders(self.settings).get(encoder_name)
+            if encoder:
+                stream_encoding += encoder.args(stream_id)
+            else:
+                logger.error("Configured audio encoder '%s' is not supported or not found.", encoder_name)
 
         return {
             'stream_mapping':  ['-map', map_identifier],
@@ -160,8 +168,13 @@ class PluginStreamMapper(StreamMapper):
         :return:
         """
         # Get the container extension
-        encoder = self.get_encoders(self.settings).get(self.settings.get_setting('bmw_audio_encoder'))
-        container_extension = encoder.get_output_file_extension(self.settings.get_setting('bmw_audio_encoder'))
+        encoder_name = self.settings.get_setting('audio_encoder')
+        encoder = self.get_encoders(self.settings).get(encoder_name)
+        if encoder:
+            container_extension = encoder.get_output_file_extension(encoder_name)
+        else:
+            logger.error("Configured audio encoder '%s' is not supported or not found.", encoder_name)
+            container_extension = "mkv"
         # Remove the extension from the current file out path and replace with the encoder extension
         split_file_out = os.path.splitext(path)
         new_file_out = "{}.{}".format(split_file_out[0], container_extension)
